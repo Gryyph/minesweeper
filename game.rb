@@ -1,3 +1,6 @@
+require "board.rb"
+
+
 class Game
 
 
