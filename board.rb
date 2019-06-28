@@ -3,17 +3,25 @@ require_relative "tile"
 
 class Board
 
+    attr_accessor :grid
 
-    def self.empty_grid
+    def empty_grid
         Array.new(9) do
-            Array.new(9) { Tile.new(0) }
+            Array.new(9) { Tile.new() }
         end
+
+    end
+
+    def generate_bombs
+        
+
+
     end
 
 
     def initialize(grid = self.empty_grid)
-
         @grid = grid
+        @grid.generate_bombs
 
     end
 
@@ -32,7 +40,12 @@ class Board
     def render
         puts "  #{(0..8).to_a.join(" ")}"
         grid.each_with_index do |row, i|
-            puts "#{i} #{row.join(" ")}"
+            arr = []
+            row.each do |tile|
+                arr << tile.display_value
+            end
+
+            puts "#{i} #{arr.join(" ")}"
         end
     end
 
