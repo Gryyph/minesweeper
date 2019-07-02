@@ -15,6 +15,7 @@ class Board
     def initialize(grid = self.empty_grid)
         @grid = grid
         self.generate_bombs
+        self.generate_adacent_tiles
 
     end
 
@@ -80,8 +81,11 @@ class Board
         else
             self[pos].contains_bomb = true
         end
-        
-        
+         
+    end
+
+    def generate_adjacent_tiles
+       
     end
 
 end
