@@ -147,4 +147,27 @@ class Board
 
         return count
     end
+
+    def solved?
+        @grid.each_with_index do |row,i|
+            row.each_with_index do |tile,j|
+                if tile.contains_bomb == false && tile.revealed == false
+                    return false
+                end
+            end
+        end
+        return true
+    end
+
+    def game_over?
+        @grid.each_with_index do |row,i|
+            row.each_with_index do |tile,j|
+                if tile.contains_bomb == true && tile.revealed == true
+                    return true
+                end
+            end
+        end
+        return false
+
+    end
 end
