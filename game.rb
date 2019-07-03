@@ -76,13 +76,31 @@ class Game
         @game.render
         pos = get_pos
         val = get_val
-        @game[pos].revealed = true if val == "r"
+        reveal(pos) if val == "r"
         @game[pos].flagged = true if val == "f"
 
     end
 
 
+    def reveal(pos)
+        #debugger
+        x,y = pos
+        if @game[pos].display_value == "_"
+            @game[pos].revealed = true
+            reveal([x+1,y+1]) if x < 8 && y < 8
+            reveal([x+1,y-1]) if x < 8 && y > 0
+            reveal([x+1,y]) if x < 8 
+            reveal([x-1,y-1]) if x > 0 && y > 0
+            reveal([x-1,y]) if x > 0
+            reveal([x-1,y+1]) if x > 0 && y < 8
+            reveal([x,y-1]) if y > 0
+            #reveal([x,y])
+            
+        else
+            @game[pos].revealed = true
+        end
 
+    end
 
 
 
